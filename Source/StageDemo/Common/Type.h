@@ -46,3 +46,35 @@ struct FDoorInfo
 	float TargetTime;
 };
 
+
+UENUM(BlueprintType)
+enum class ECameraView : uint8
+{
+	ViewNone = 0			UMETA( DisplayName = "None" ),
+	CityView				UMETA( DisplayName = "城市主场景视角" ),
+	ParkingView				UMETA( DisplayName = "驻车视角" ),
+	ChargeView				UMETA( DisplayName = "充电视角" ),
+	GameView				UMETA( DisplayName = "游戏场景")
+};
+
+/*
+ * 相机点位信息，这里采用在编辑器模式下，从场景中收集点位的方式
+ */
+USTRUCT(BlueprintType)
+struct FCameraViewInfo
+{
+	GENERATED_BODY()
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category="Common")
+	ECameraView CameraView;
+
+	//收集到的点位信息这是一个变换值
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category="Common")
+	FTransform Transform;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category="Common")
+	float SpringArmLenght;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category="Common")
+	float ViewField = 90;
+	
+};
